@@ -5,6 +5,14 @@
     font-size: larger;
 }
 
+.gamecanvas{
+    position:fixed;
+    left: 50%;
+    margin: auto;
+    margin-top: 10em;
+    margin-left: -5em;
+}
+
 body{
     text-align: center;
 }

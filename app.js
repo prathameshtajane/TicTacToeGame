@@ -1,6 +1,9 @@
 /**
  * Created by prathamesh on 3/16/17.
  */
+
+var delayMillis = 100;
+
 function startgame() {
     document.turn="X";
     document.winner=false;
@@ -20,12 +23,29 @@ function nextmove(param) {
             } else {
                 setMsg("We have a winner! Congratulations " + document.turn);
                 document.winner = true;
+                replaygame(document.turn);
             }
         }
         else {
             setMsg("This box is already taken.Choose another box");
         }
     }
+    else{
+        replaygame();
+    }
+}
+
+function replaygame(winner){
+    setTimeout(function() {
+        alert("Congratualtions "+winner+". You won this game.");
+    var decision=confirm("Do you want to replay this game?");
+    //console.log(decision);
+    if(decision){
+        location.reload();
+    }else{
+        location.reload();
+    }
+    },delayMillis);
 }
 
 function switchturn(turn) {
@@ -48,6 +68,7 @@ function checkWinner(move){
         validateCombinations(2,5,8,move) ||
         validateCombinations(3,6,9,move)){
         return !result;
+
     }
     else{
         return result;
