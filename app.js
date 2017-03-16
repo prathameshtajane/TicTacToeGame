@@ -3,6 +3,7 @@
  */
 function startgame() {
     document.turn="X";
+    document.winner=false;
 }
 
 function setMsg(msg) {
@@ -10,17 +11,20 @@ function setMsg(msg) {
 }
 
 function nextmove(param) {
-    if(param.innerText == '') {
-        param.innerText=document.turn;
-        if(!checkWinner(document.turn)) {
-            switchturn(param.innerText);
-            console.log("Next Move");
-        }else{
-            setMsg("We have a winner! Congratulations "+document.turn);
+    if(document.winner == false) {
+        if (param.innerText == '') {
+            param.innerText = document.turn;
+            if (!checkWinner(document.turn)) {
+                switchturn(param.innerText);
+                console.log("Next Move");
+            } else {
+                setMsg("We have a winner! Congratulations " + document.turn);
+                document.winner = true;
+            }
         }
-    }
-    else{
-        setMsg("This box is already taken.Choose another box");
+        else {
+            setMsg("This box is already taken.Choose another box");
+        }
     }
 }
 
