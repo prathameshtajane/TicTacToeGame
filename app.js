@@ -7,6 +7,10 @@ var delayMillis = 100;
 function startgame() {
     document.turn="X";
     document.winner=false;
+    document.xscore=0;
+    document.yscore=0;
+    document.getElementById("xscore").innerText=document.xscore;
+    document.getElementById("yscore").innerText=document.yscore;
 }
 
 function setMsg(msg) {
@@ -23,6 +27,7 @@ function nextmove(param) {
             } else {
                 setMsg("We have a winner! Congratulations " + document.turn);
                 document.winner = true;
+                incrementscore(document.turn);
                 replaygame(document.turn);
             }
         }
@@ -36,16 +41,17 @@ function nextmove(param) {
 }
 
 function replaygame(winner){
-    setTimeout(function() {
-        alert("Congratualtions "+winner+". You won this game.");
-    var decision=confirm("Do you want to replay this game?");
-    //console.log(decision);
-    if(decision){
-        location.reload();
-    }else{
-        location.reload();
+    if(typeof winner != "undefined") {
+        setTimeout(function () {
+            alert("Congratualtions " + winner + ". You won this game.");
+            var decision = confirm("Do you want to replay this game?");
+            if (decision) {
+                flushtable();
+                console.log("Table flushed");
+            } else {
+            }
+        }, delayMillis);
     }
-    },delayMillis);
 }
 
 function switchturn(turn) {
@@ -84,6 +90,32 @@ function validateCombinations(a,b,c,move) {
     }
 }
 
+function flushtable(){
+    for(var i= 1;i<=9;i++){
+        document.getElementById("box"+i).innerText="";
+    }
+    document.winner = false;
+}
+
 function getBoxValue(number){
     return document.getElementById("box"+number).innerText;
 }
+
+function incrementscore(user){
+    if(user == "X"){
+        document.xscore++;
+        document.getElementById("xscore").innerText=document.xscore;
+    }else{
+        document.yscore++;
+        document.getElementById("yscore").innerText=document.yscore;
+    }
+}
+
+function resetgame(){
+    flushtable();
+}
+
+function newgame() {
+    location.reload();
+}
+

@@ -16,3 +16,31 @@
 body{
     text-align: center;
 }
+
+.xscoreboard{
+    position:fixed;
+    left: 50%;
+    margin: auto;
+    margin-top: 20em;
+    margin-left: -5em;
+}
+
+.buttons{
+
+}
+
+.resetButton{
+    position:fixed;
+    left: 47%;
+    margin: auto;
+    margin-top: 35em;
+    background-color: aqua;
+}
+
+.newGameButton{
+    position:fixed;
+    left: 47%;
+    margin: auto;
+    margin-top: 38em;
+    background-color: red;
+}
